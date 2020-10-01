@@ -27,7 +27,13 @@
 　|-lightbulb.svg  
 　|-logo.svg  
 　|-logo-icon.jpg  
-　|-logo-icon  
+　|-logo-icon.png  
+　|-logo-icon.svg  
+　|-loupe.svg  
+　|-rain.svg  
+　|-snow.svg  
+・past-disaster-info
+　|-index.html
 
 ### Usage
  
