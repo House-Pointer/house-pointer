@@ -4,7 +4,7 @@
  
  
 ### 使用例
-<img src="https://i.imgur.com/QtVohNl.png" width="320">
+<img src="https://i.imgur.com/QtVohNl.png" width="480">
 この画像は実際に木造建築の画像を読み込ませた際の処理結果です。  赤い枠に囲まれている部分が劣化していると判断された部分です。
 
 
