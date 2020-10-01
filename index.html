@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>House Pointer</title>
+
+    <meta
+    name="description"
+    content="だれでもかんたんに木造住宅に関する診断ができます"
+    />
+    <!--OGP開始-->
+    <meta property="og:title" content="House Pointer" /> 
+    <meta property="og:description" content="だれでもかんたんに木造住宅に関する診断ができます" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://house-pointer.web.app/index.html" />
+    <meta property="og:image" content="http://house-pointer.web.app/img/logo-icon.jpg" /> 
+    <!--OGP終了-->    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="img/logo-icon.svg">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.21.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.21.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.21.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.21.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.21.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/7.21.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/7.21.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/7.21.1/firebase-performance.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <script type="text/javascript">
+    
+    </script>
+
+  </head>
+
+  <!--トップ-->
+  <body>
+
+    <!--ヘッダー・ナビゲーション 開始-->
+    <header class= "section-border">
+      <div class="page-header wrapper">
+
+        <a href="index.html">
+          <img class="logo" src="img/logo.svg" alt="HousePointer logo">
+        </a>
+        <nav>      
+          <ul class="header-nav">
+            <li><a href="#jamp-1">使い方・特徴</a></li>
+          </u1>
+        </nav>
+      </div>
+
+      </div>
+    </header>
+    <!--ヘッダー・ナビゲーション 終了-->
+    
+    <!--メインコンテンツ・診断開始ボタン 開始-->
+    <main class="section-border">
+      <div class="main-contents wrapper">
+        <h2 class="page-title">
+          かんたんに 木造住宅 診断
+        </h2>
+        <p>
+          木造住宅に関する診断ができます。以下の３つから診断の種類をお選びいただけます。
+        </p>
+
+        <div class="layout-1">
+
+          <div class="item-1 diagnosis-heatmap">
+              <h2>
+                建物の劣化具合
+              </h2>
+              <p>
+                木造住宅の劣化具合を調べることができます<br>
+              </p>
+              <a href="diagnosis-heatmap/index.html"></a>
+          </div>
+          <div class="item-1 distortion-diagnosis">
+              <h2>
+                建物のゆがみ
+              </h2>
+              <p>
+                木造住宅のゆがみを見やすくできます<br>
+              </p>
+              <a href="distortion-diagnosis/index.html"></a>
+          </div>
+          <div class="item-1 past-disaster-info">
+              <h2>
+                過去の災害情報
+              </h2>
+              <p>
+                過去に起こった災害情報を調べることができます<br>
+              </p>
+              <a href="past-disaster-info/index.html"></a>
+          </div>
+        
+        </div>
+
+        
+      </div><!-- /main-contents -->
+    </main><!-- /big-bg -->
+    <!--メインコンテンツ・診断開始ボタン 終了-->
+
+    <!--サブコンテンツ 開始-->
+    <section class="section-border">
+      <div class="sub-contents wrapper" id="jamp-1">
+
+        <div class="sub-contents-item">
+          <a href="index.html">
+            <img class="logo" src="img/logo.svg" alt="HousePointer logo">
+          </a>
+          <p>
+            かんたんに 木造住宅 診断
+          </p>
+        </div><!--/sub-contents-item-->
+        <div class="sub-contents-item">
+          <h2 class="page-title">
+            <img class="sub-icon" src="img/lightbulb.svg" alt="HousePointer icon">
+              House Pointer について
+          </h2>
+          <p>
+            当サイトは、「だれでもかんたんに 木造建築に関する診断ができる」を目的としている診断サイトです。
+          </p>
+          <p>
+            診断は、おもに 写真を使ってご利用いただけます。
+          </p>
+        </div><!--/sub-contents-item-->
+        <div class="sub-contents-item">
+          <h2 class="page-title">
+            <img class="sub-icon" src="img/loupe.svg" alt="HousePointer icon">
+              House Pointer の使い方
+          </h2>
+            <p>
+              当サイト、House Pointer には、以下の３つの診断があります。
+            </p>
+            <p>
+              「建物の劣化具合 診断」では、写真から 木造住宅の劣化具合を 診断できます。
+            </p>
+            <p>
+              「建物のゆがみ 診断」では、写真から 建物のゆがみを 診断できます。
+            </p>
+            <p>
+              「過去災害 診断」では、現在の位置情報から、その場所で起こった災害を 診断できます。
+            </p>
+        </div><!--/sub-contents-item-->
+
+      </div><!--/sub-contents-->
+    </section>
+    <!--サブコンテンツ 終了-->
+    
+    <div id="jmp_page_top"><a href="#"></a></div>
+
+    <footer>
+      <div class="wrapper">
+        <p><small>&copy; Copyright 2020 - House Pointer - students</small></p>
+      </div>
+    </footer>
+    <!--フッター 終了-->
+    
+  </body>
+</html>
