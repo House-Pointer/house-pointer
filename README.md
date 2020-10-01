@@ -4,33 +4,30 @@
  
  
 ### DEMO
-![](https://drive.google.com/file/d/1VM3m6eNthIW2CTM9fTfHVyT7Y5wDIhpl/view?usp=sharing) 
+![demo_img](https://drive.google.com/file/d/1VM3m6eNthIW2CTM9fTfHVyT7Y5wDIhpl/view?usp=sharing) 
 
-この画像は実際に木造建築の画像を読み込ませた際の処理結果です。<br>赤い枠に囲まれている部分が劣化していると判断された部分です。
- 
-### Features
- 
-写真を撮ってアップするだけで手軽に木造建築の劣化情報を知ることができます。  
- 
+この画像は実際に木造建築の画像を読み込ませた際の処理結果です。  赤い枠に囲まれている部分が劣化していると判断された部分です。
+
+
 ### ファイル構成
- ファイル構成は以下の通りです。
+ ファイル構成は以下の通りです。  
 ・index.html  
-・404.index  
-・css
- |-style.css
-・diagnosis-heatmap
- |-cascade.xml
- |-index.html
-・distortion-diagnosis
- |-index.html
-・img
- |-disaster.svg
- |-eye.svg
- |-foto.svg
- |-lightbulb.svg
- |-logo.svg
- |-logo-icon.jpg
- |-logo-icon
+・404.index    
+・css  
+　|-style.css  
+・diagnosis-heatmap  
+　|-cascade.xml  
+　|-index.html  
+・distortion-diagnosis  
+　|-index.html  
+・img  
+　|-disaster.svg  
+　|-eye.svg  
+　|-foto.svg  
+　|-lightbulb.svg  
+　|-logo.svg  
+　|-logo-icon.jpg  
+　|-logo-icon  
 
 ### Usage
  
