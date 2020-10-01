@@ -4,7 +4,7 @@
  
  
 ### 使用例
-![demo_img](https://drive.google.com/file/d/1dyTpHG1i-LlEkAiMCla-iXub1Kc1ZsWe/view?usp=sharing) 
+![demo_img](https://imgur.com/a/5YmwurM) 
 
 この画像は実際に木造建築の画像を読み込ませた際の処理結果です。  赤い枠に囲まれている部分が劣化していると判断された部分です。
 
@@ -35,7 +35,7 @@
 ・past-disaster-info
 　|-index.html
 
-### 使いかた
+### 使い方
 ファイルをダウンロードして、firebaseなどサーバー上にアップロードして使用してください。  
 
 ### 注意点
