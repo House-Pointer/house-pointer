@@ -4,9 +4,9 @@
  
  
 ### DEMO
-![Alt text](https://drive.google.com/file/d/1VM3m6eNthIW2CTM9fTfHVyT7Y5wDIhpl/view?usp=sharing) 
+![](https://drive.google.com/file/d/1VM3m6eNthIW2CTM9fTfHVyT7Y5wDIhpl/view?usp=sharing) 
 
-この画像は実際に木造建築の画像を読み込ませた際の処理結果です。赤い枠に囲まれている部分が劣化していると判断された部分です。
+この画像は実際に木造建築の画像を読み込ませた際の処理結果です。<br>赤い枠に囲まれている部分が劣化していると判断された部分です。
  
 ### Features
  
