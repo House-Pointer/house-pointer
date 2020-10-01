@@ -4,7 +4,7 @@
  
  
 ### 使用例
-![demo_img](https://drive.google.com/file/d/1VM3m6eNthIW2CTM9fTfHVyT7Y5wDIhpl/view) 
+![demo_img](https://drive.google.com/file/d/1dyTpHG1i-LlEkAiMCla-iXub1Kc1ZsWe/view?usp=sharing) 
 
 この画像は実際に木造建築の画像を読み込ませた際の処理結果です。  赤い枠に囲まれている部分が劣化していると判断された部分です。
 
@@ -43,6 +43,6 @@
 一度ページを更新してから画像をアップしてください。
  
 ### 作成者
-*作成者:山田耕太郎、宮川夢空、清水陸、岡田達也、笠島海音  
-*所属:独立行政法人国立高等専門学校機構福井工業高等専門学校
+作成者:山田耕太郎、宮川夢空、清水陸、岡田達也、笠島海音  
+所属:独立行政法人国立高等専門学校機構福井工業高等専門学校
 
