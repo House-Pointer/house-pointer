@@ -31,7 +31,7 @@
 　|-loupe.svg  
 　|-rain.svg  
 　|-snow.svg  
-・past-disaster-info
+・past-disaster-info  
 　|-index.html
 
 ### 使い方
