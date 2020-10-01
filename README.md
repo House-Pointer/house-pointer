@@ -4,7 +4,7 @@
  
  
 ### 使用例
-![demo_img](https://drive.google.com/file/d/1dyTpHG1i-LlEkAiMCla-iXub1Kc1ZsWe/view?usp=sharing) 
+![demo_img](https://drive.google.com/file/d/1VM3m6eNthIW2CTM9fTfHVyT7Y5wDIhpl/view) 
 
 この画像は実際に木造建築の画像を読み込ませた際の処理結果です。  赤い枠に囲まれている部分が劣化していると判断された部分です。
 
@@ -36,11 +36,9 @@
 　|-index.html
 
 ### 使いかた
- 
-
+ファイルをダウンロードして、firebaseなどサーバー上にアップロードして使用してください。  
 
 ### 注意点
- 
 劣化情報診断において、一度画像を読み込んだ後にもう一度画像を読み込ませても動作しません。
 一度ページを更新してから画像をアップしてください。
  
