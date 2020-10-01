@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>House Pointer - distortion_diagnosis</title>
+    <meta
+      name="description"
+      content="木造住宅で安全な暮らしをするために、築年数をチェックすることができます"
+    />
+    <!--OGP開始-->
+    <meta property="og:title" content="House Pointer" /> 
+    <meta property="og:description" content="だれでもかんたんに木造住宅に関する診断ができます" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://house-pointer.web.app/index.html" />
+    <meta property="og:image" content="http://house-pointer.web.app/img/logo-icon.jpg" /> 
+    <!--OGP終了-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../img/logo-icon.svg">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script type="text/javascript" >
+      //OpenCV.jsのローディング
+      function onOpenCvReady() {
+        document.getElementById("status").innerHTML = "診断を開始できます.";
+      }
+    </script>
+
+    <script
+      async src="https://docs.opencv.org/3.4.1/opencv.js"
+      onload="onOpenCvReady();"
+      type="text/javascript"
+    ></script>
+
+  </head>
+
+  <!--屋根のゆがみ-->
+  <body>
+
+    <!--ヘッダー・ナビゲーション-->
+    <header class="section-border">
+      <div class="page-header wrapper">
+
+        <a href="../index.html">
+          <img class="logo" src="../img/logo.svg" alt="HousePointer logo">
+        </a>
+        <nav>
+          <ul class="header-nav">
+            <li><a class="list-1" href="../diagnosis-heatmap/index.html">建物の劣化具合</a></li>
+            <li><a class="list-2" href="index.html">建物のゆがみ</a></li>
+            <li><a class="list-3" href="../past-disaster-info/index.html">過去の災害情報</a></li>
+          </u1>
+        </nav>
+
+      </div>
+    </header>
+    <!--ヘッダー・ナビゲーション 終了-->
+
+    <!--メイン・診断結果-->
+    <main class="section-border">
+      <div class="main-contents wrapper">
+        
+        <!--清水処理 開始-->
+        <section class="section-paling distortion-diagnosis">
+          <h2 class="page-title">
+            <img class="sub-icon" src="../img/eye.svg" alt="HousePointer icon">
+            建物の ゆがみ
+          </h2>
+          <p>
+            木造住宅の ゆがみを見やすくできます
+          </p>
+          <br>
+
+          <p id="status">準備中...</p>
+          <br>
+          <div>
+            <label>
+              写真を選択する
+              <input type="file" id="fileInput" accept='image/*' name="file" />
+            </label>
+          </div>
+
+          <p id="loading">診断中...しばらくお待ちください...</p>   
+          <br>                 
+
+          <img id="imageSrc" alt="No Image" />
+          <canvas id="canvasOutput2"></canvas>
+        
+          <!---->
+          <script type="text/javascript">
+            let imgElement = document.getElementById("imageSrc");
+            let inputElement = document.getElementById("fileInput");
+            inputElement.addEventListener(
+              "change",
+              (e) => {
+                imgElement.src   = URL.createObjectURL(e.target.files[0]);
+                document.getElementById("loading").style.display = "inline-block";
+              },
+              false
+            );
+
+            imgElement.onload = function () {
+              //画像のサイズを縮小してフィルタリング
+              //画像処理をかけた後に拡大して表示
+              let src = cv.imread("imageSrc");
+              let src2 = new cv.Mat();
+              src2 = src.clone();
+
+              //画像の高さ、幅を指定
+              var img_width = src.cols;
+              var img_height = src.rows * (img_width / src.cols);
+              let dst = cv.Mat.zeros(img_height, img_width, cv.CV_8UC3);
+              let dsize = new cv.Size(img_width, img_height);
+              let lines = new cv.Mat();
+              let color = new cv.Scalar(255, 255, 255);
+              let color2 = new cv.Scalar(255, 0, 0);
+              cv.cvtColor(src, src, cv.COLOR_RGBA2GRAY, 0);
+
+              //画像のリサイズ
+              cv.resize(src, src, dsize, 0, 0, cv.INTER_AREA);
+
+              //メディアンフィルタ(2重)
+              cv.medianBlur(src, src, 5);
+              cv.medianBlur(src, src, 5);
+              cv.medianBlur(src, src, 5);
+
+              //エッジ検出
+              cv.Canny(src, src, 100, 150, 3); /*引数３、４　最小、最大*/
+
+              //確率的直線検出
+              cv.HoughLinesP(src, lines, 1, Math.PI / 180, 2, 0, 0);
+
+              // draw lines
+              for (let i = 0; i < lines.rows; ++i) {
+                let startPoint = new cv.Point(
+                  lines.data32S[i * 4],
+                  lines.data32S[i * 4 + 1]
+                );
+                let endPoint = new cv.Point(
+                  lines.data32S[i * 4 + 2],
+                  lines.data32S[i * 4 + 3]
+                );
+                cv.line(src2, startPoint, endPoint, color2 /**/,2);
+              }
+              document.getElementById("canvasOutput2").style.display="inline-block";  /**/
+              cv.imshow("canvasOutput2", src2);
+              document.getElementById("canvasOutput2").style.background="#ff2d00";//赤
+
+              document.getElementById("imageSrc").style.display="none";  /**/
+
+              document.getElementById("loading").innerHTML = "診断完了";
+              document.getElementById("attention").style.display="inline-block";  /**/
+
+              src.delete();
+              src2.delete();
+              dst.delete();
+              lines.delete();
+            };
+
+          </script>
+
+          <div id="attention">
+            <h2>注目ポイント</h2>
+            <p>・家に 強い日差しが当たりますか？</p><br>
+            <p>・風通しは良いですか？</p><br>
+            <p>　→ 湿気が高いと 木が腐り、白アリ発生 の原因となってしまいます。</p><br>
+            <p>・屋根の瓦が 歪んでいませんか？</p><br>
+          </div>
+
+        </section>        
+        <!--清水処理 終了-->
+
+
+        <div class="layout-2">
+
+          <div class="item-2">
+            <img class="main-icon" src="../img/loupe.svg" alt="HousePointer icon">
+            <h2>
+              建物のゆがみの診断方法
+            </h2>  
+            <p>
+              ご利用方法は かんたんです。
+              「写真を選択する」をクリックして 木造建築が映った写真を 選択してください。
+              診断が完了次第、新しく表示された写真 と 注目ポイント をご覧ください。
+            </p>
+          </div> 
+          <div class="item-2">
+            <img class="main-icon" src="../img/lightbulb.svg" alt="HousePointer icon">
+            <h2>
+              プライバシーの保障
+            </h2>
+            <p>
+              診断結果や 写真が だれかに勝手に公表されることはありません。
+              そのため、だれかに 診断結果が 勝手に公表されることはなく、安心してご利用いただけます。
+            </p>
+          </div>
+          <div class="item-2">
+            <img class="main-icon" src="../img/eye.svg" alt="HousePointer icon">
+            <h2>
+              色んなデバイスから確認可
+            </h2>
+            <p>
+              当サイトは、パソコンやスマホなどあらゆるデバイスから確認することができます。
+              また、MacやWindows、LinuxなどOSを問わず ご利用できます。
+            </p>
+            </div>
+
+
+        </div><!--/layout-2-->
+
+
+      </div><!-- /main-contents -->
+    </main>
+    <!--メインコンテンツ・診断開始ボタン 終了-->
+
+    <!--サブコンテンツ 開始-->
+    <section class="section-border">
+      <div class="sub-contents wrapper">
+        
+        <div class="sub-contents-item">
+          <a href="../index.html">
+            <img class="logo" src="../img/logo.svg" alt="HousePointer logo">
+          </a>
+          <p>
+            かんたんに 木造住宅 診断
+          </p>
+        </div><!--/sub-contents-item-->
+        <div class="sub-contents-item">
+          <h2 class="page-title">
+            <img class="sub-icon" src="../img/lightbulb.svg" alt="HousePointer icon">
+              House Pointer について
+          </h2>
+          <p>
+            当サイトは、「だれでもかんたんに 木造建築に関する診断ができる」を目的としている診断サイトです。
+          </p>
+          <p>
+            診断は、おもに 写真を使ってご利用いただけます。
+          </p>
+        </div><!--/sub-contents-item-->
+        <div class="sub-contents-item">
+          <h2 class="page-title">
+            <img class="sub-icon" src="../img/loupe.svg" alt="HousePointer icon">
+              House Pointer の使い方
+          </h2>
+            <p>
+              当サイト、House Pointer には、以下の３つの診断があります。
+            </p>
+            <p>
+              「建物の劣化具合 診断」では、写真から 木造住宅の劣化具合を 診断できます。
+            </p>
+            <p>
+              「建物のゆがみ 診断」では、写真から 建物のゆがみを 診断できます。
+            </p>
+            <p>
+              「過去災害 診断」では、現在の位置情報から、その場所で起こった災害を 診断できます。
+            </p>
+        </div><!--/sub-contents-item-->
+        
+      </div><!--/sub-contents-->
+    </section>
+    <!--サブコンテンツ 終了-->
+    
+    <!--フッター 開始-->
+    <section class= "section-border">
+      <div class="sub-contents footer-nav wrapper">
+        <a class="list-1" href="../diagnosis-heatmap/index.html">建物の劣化具合</a>
+      </div>
+    </section>
+    <section class= "section-border">
+      <div class="sub-contents footer-nav wrapper">
+        <a class="list-2" href="index.html">＞建物のゆがみ</a>
+      </div>
+    </section>
+    <section class= "section-border">
+      <div class="sub-contents footer-nav wrapper">
+        <a class="list-3" href="../past-disaster-info/index.html">過去の災害情報</a>
+      </div>
+    </section>
+
+    <div id="jmp_page_top"><a href="#"></a></div>
+
+    <footer>
+      <div class="wrapper">
+        <p><small>&copy; Copyright 2020 students</small></p>
+      </div>
+    </footer>
+    <!--フッター 終了-->
+
+  </body>
+</html>
